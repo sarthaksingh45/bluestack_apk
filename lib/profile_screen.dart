@@ -181,85 +181,83 @@ class _ProfileSectionState extends State<ProfileSection> {
                     Padding(
                       padding: EdgeInsets.all(10),
                       child: Container(
-                        height: 130,
-                        child: Expanded(
-                            child: Row(
-                          children: [
-                            Container(
-                              height: 130,
-                              width: (deviceSize.width - 20) / 3,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      Colors.orange[800],
-                                      Colors.orange[200]
-                                    ]),
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    bottomLeft: Radius.circular(15)),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  snapshot.data.played.toString() +
-                                      " \ntotal matches played",
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                  textAlign: TextAlign.center,
+                          height: 130,
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 130,
+                                width: (deviceSize.width - 20) / 3,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                      colors: [
+                                        Colors.orange[800],
+                                        Colors.orange[200]
+                                      ]),
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(15),
+                                      bottomLeft: Radius.circular(15)),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    snapshot.data.played.toString() +
+                                        " \ntotal matches played",
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.white),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              height: 130,
-                              width: (deviceSize.width - 20) / 3,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      Colors.deepPurple[900],
-                                      Colors.deepPurple[200]
-                                    ]),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  snapshot.data.won.toString() +
-                                      " \nmatches won",
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                  textAlign: TextAlign.center,
+                              Container(
+                                height: 130,
+                                width: (deviceSize.width - 20) / 3,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                      colors: [
+                                        Colors.deepPurple[900],
+                                        Colors.deepPurple[200]
+                                      ]),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    snapshot.data.won.toString() +
+                                        " \nmatches won",
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.white),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              height: 130,
-                              width: (deviceSize.width - 20) / 3,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      Colors.deepOrange[800],
-                                      Colors.amber[400]
-                                    ]),
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(15),
-                                    bottomRight: Radius.circular(15)),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  snapshot.data.played.toString() +
-                                      " \npercentage winrate",
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                  textAlign: TextAlign.center,
+                              Container(
+                                height: 130,
+                                width: (deviceSize.width - 20) / 3,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                      colors: [
+                                        Colors.deepOrange[800],
+                                        Colors.amber[400]
+                                      ]),
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(15),
+                                      bottomRight: Radius.circular(15)),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    snapshot.data.played.toString() +
+                                        " \npercentage winrate",
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.white),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        )),
-                      ),
+                            ],
+                          )),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8),

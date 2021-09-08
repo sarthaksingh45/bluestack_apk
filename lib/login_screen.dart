@@ -41,10 +41,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       0.9,
                     ],
                     colors: [
-                      Colors.yellow,
-                      Colors.red,
-                      Colors.pink,
-                      Colors.amber,
+                      Colors.yellow[200],
+                      Colors.red[200],
+                      Colors.pink[100],
+                      Colors.amber[100],
                     ],
                   )),
                   child: Column(
