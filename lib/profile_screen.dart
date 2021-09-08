@@ -16,16 +16,15 @@ class ProfileSection extends StatefulWidget {
 }
 
 Future<ProfileData> fetchProfile(String userName) async {
-  String sentUser;
-  if (userName == "9898989898") {
-    sentUser = "userdetails1";
-  } else {
-    sentUser = "userdetails2";
-  }
+  String sentUser = "userdetails2";
+
   final response = await http.get(Uri.parse(
       "https://048a4050-01cd-4d39-b312-67588a2ebe70.mock.pstmn.io//$sentUser"));
 
+  //print(jsonDecode(response.body.toString()));
+  //print(response.statusCode.toString() + "status codeeeeeeeeeeeee");
   if (response.statusCode == 200) {
+    //print("json decode data:::::::::" + jsonDecode(response.body.toString()));
     return ProfileData.fromJson(jsonDecode(response.body));
   } else {
     throw Exception('failedddddddd!!!!');
@@ -51,7 +50,7 @@ Future<List<RecData>> fetchData() async {
   } else {
     print("Error Occured");
   }
-  print('Coming DAta ' + comingData[0].gameName);
+  //print('Coming DAta ' + comingData[0].gameName);
   return comingData;
 }
 
@@ -73,6 +72,14 @@ class _ProfileSectionState extends State<ProfileSection> {
     return FutureBuilder<ProfileData>(
         future: fetchProfile(widget.userName),
         builder: (context, snapshot) {
+          //print("Snapshot Data  " + snapshot.data.toString());
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
           if (snapshot.hasData) {
             return Scaffold(
               backgroundColor: Colors.grey[200],
@@ -288,11 +295,11 @@ class _ProfileSectionState extends State<ProfileSection> {
                 ),
               ),
             );
+          } else {
+            return Scaffold(
+                backgroundColor: Colors.yellow[400],
+                body: Center(child: CircularProgressIndicator()));
           }
-
-          return Scaffold(
-              backgroundColor: Colors.grey[200],
-              body: Center(child: CircularProgressIndicator()));
         });
   }
 }

@@ -43,8 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     colors: [
                       Colors.yellow,
                       Colors.red,
-                      Colors.indigo,
-                      Colors.teal,
+                      Colors.pink,
+                      Colors.amber,
                     ],
                   )),
                   child: Column(
@@ -79,7 +79,7 @@ class _CustomCardState extends State<CustomCard> {
   bool _isButtonDisabled = false;
   String pass;
 
-  Future<void> Submit(String userId, String password) async {
+  Future<void> submit(String userId, String password) async {
     final spref = await SharedPreferences.getInstance();
 
     if (userId == "9898989898" && password == "password123") {
@@ -104,91 +104,93 @@ class _CustomCardState extends State<CustomCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      elevation: 8.0,
-      child: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-            child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(children: <Widget>[
-            Container(
-              height: 150,
-              child: Image.asset('assets/game-tv.png'),
-            ),
-            TextFormField(
-              decoration: InputDecoration(labelText: 'User ID'),
-              keyboardType: TextInputType.emailAddress,
-              validator: (value) {
-                if (value.length < 3 || value.length > 11) {
-                  return 'UserId should be of length 3 to 11';
-                }
-                return null;
-              },
-              onFieldSubmitted: (_) {
-                FocusScope.of(context).requestFocus(_passwordFocusNode);
-              },
-              onChanged: (value) {
-                setState(() {
-                  _isButtonDisabled = false;
-                });
-              },
-              onSaved: (value) {
-                userId = value;
-              },
-            ),
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
-              focusNode: _passwordFocusNode,
-              validator: (value) {
-                if (value.length > 11 || value.length < 3) {
-                  return 'Password should in length 3 to 11';
-                }
-                return null;
-              },
-              onChanged: (value) {
-                setState(() {
-                  _isButtonDisabled = false;
-                });
-              },
-              onSaved: (value) {
-                pass = value;
-              },
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            _isButtonDisabled
-                ? TextButton(
-                    child: Text("Submit"),
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.grey),
-                    ),
-                    onPressed: () {},
-                  )
-                : ElevatedButton(
-                    onPressed: () {
-                      if (!_formKey.currentState.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Wrong User ID or Password"),
-                          backgroundColor: Colors.red,
-                        ));
-                        setState(() {
-                          _isButtonDisabled = true;
-                        });
-                        return;
-                      }
-                      _formKey.currentState.save();
-                      Submit(userId, pass);
-                    },
-                    child: Text("Submit"))
-          ]),
-        )),
+    return SingleChildScrollView(
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        elevation: 8.0,
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+              child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(children: <Widget>[
+              Container(
+                height: 150,
+                child: Image.asset('assets/game-tv.png'),
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'User ID'),
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value.length < 3 || value.length > 11) {
+                    return 'UserId should be of length 3 to 11';
+                  }
+                  return null;
+                },
+                onFieldSubmitted: (_) {
+                  FocusScope.of(context).requestFocus(_passwordFocusNode);
+                },
+                onChanged: (value) {
+                  setState(() {
+                    _isButtonDisabled = false;
+                  });
+                },
+                onSaved: (value) {
+                  userId = value;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Password'),
+                obscureText: true,
+                focusNode: _passwordFocusNode,
+                validator: (value) {
+                  if (value.length > 11 || value.length < 3) {
+                    return 'Password should in length 3 to 11';
+                  }
+                  return null;
+                },
+                onChanged: (value) {
+                  setState(() {
+                    _isButtonDisabled = false;
+                  });
+                },
+                onSaved: (value) {
+                  pass = value;
+                },
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              _isButtonDisabled
+                  ? TextButton(
+                      child: Text("Submit"),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.grey),
+                      ),
+                      onPressed: () {},
+                    )
+                  : ElevatedButton(
+                      onPressed: () {
+                        if (!_formKey.currentState.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Wrong User ID or Password"),
+                            backgroundColor: Colors.red,
+                          ));
+                          setState(() {
+                            _isButtonDisabled = true;
+                          });
+                          return;
+                        }
+                        _formKey.currentState.save();
+                        submit(userId, pass);
+                      },
+                      child: Text("Submit"))
+            ]),
+          )),
+        ),
       ),
     );
   }

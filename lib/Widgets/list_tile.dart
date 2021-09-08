@@ -42,7 +42,7 @@ class RecSecListTile extends StatelessWidget {
                           height: 10,
                         ),
                         Container(
-                          width: 350,
+                          width: (deviceSize.width * 2) / 3,
                           padding: EdgeInsets.only(right: 10.0),
                           child: Text(
                             name,
