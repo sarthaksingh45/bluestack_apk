@@ -91,6 +91,10 @@ class _CustomCardState extends State<CustomCard> {
       Navigator.push(
           context, MaterialPageRoute(builder: (ctx) => ProfileSection(userId)));
     } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Wrong User ID or Password"),
+        backgroundColor: Colors.red,
+      ));
       setState(() {
         _isButtonDisabled = true;
       });
@@ -175,10 +179,6 @@ class _CustomCardState extends State<CustomCard> {
                   : ElevatedButton(
                       onPressed: () {
                         if (!_formKey.currentState.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text("Wrong User ID or Password"),
-                            backgroundColor: Colors.red,
-                          ));
                           setState(() {
                             _isButtonDisabled = true;
                           });

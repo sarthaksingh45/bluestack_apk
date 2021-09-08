@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import './data_helper.dart';
+import 'helpers/data_helper.dart';
 
 class ProfileSection extends StatefulWidget {
   String userName;
@@ -16,10 +16,16 @@ class ProfileSection extends StatefulWidget {
 }
 
 Future<ProfileData> fetchProfile(String userName) async {
-  String sentUser = "userdetails2";
+  String url;
+  if (userName == "9898989898") {
+    url =
+        "https://53d5ecb1-3c6b-4036-94ed-764f7ce05de5.mock.pstmn.io/userdetails1";
+  } else {
+    url =
+        "https://048a4050-01cd-4d39-b312-67588a2ebe70.mock.pstmn.io//userdetails2";
+  }
 
-  final response = await http.get(Uri.parse(
-      "https://048a4050-01cd-4d39-b312-67588a2ebe70.mock.pstmn.io//$sentUser"));
+  final response = await http.get(Uri.parse(url));
 
   //print(jsonDecode(response.body.toString()));
   //print(response.statusCode.toString() + "status codeeeeeeeeeeeee");
@@ -285,7 +291,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                             }
 
                             return Center(
-                              child: Text("NOpe"),
+                              child: CircularProgressIndicator(),
                             );
                           },
                         ),

@@ -8,14 +8,21 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListTile(
-        title: Text("LogOut!!!"),
-        onTap: () async {
-          final spref = await SharedPreferences.getInstance();
-          spref.remove('userInfo');
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (ctx) => LoginScreen()));
-        },
+      child: Column(
+        children: [
+          SizedBox(
+            height: 100,
+          ),
+          ListTile(
+            title: Text("LogOut!!!"),
+            onTap: () async {
+              final spref = await SharedPreferences.getInstance();
+              spref.remove('userInfo');
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (ctx) => LoginScreen()));
+            },
+          ),
+        ],
       ),
     );
   }
